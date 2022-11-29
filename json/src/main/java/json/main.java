@@ -13,7 +13,6 @@ import org.skyscreamer.jsonassert.JSONAssert;
 
 public class main {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws JSONException {
 		
 		//Fonctionnement de JSONAssert
@@ -30,7 +29,7 @@ public class main {
                 main.class.getResourceAsStream( "/test.json");
         String jsonTxt = null;
 		try {
-			jsonTxt = IOUtils.toString( is );
+			jsonTxt = IOUtils.toString(is,"UTF-8");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +48,7 @@ public class main {
 		    System.out.println(id + loc);
 		}
 					
-		    }
-
 	}
+
+}
 
