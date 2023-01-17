@@ -16,6 +16,7 @@ public class verifJson {
 		try {
 				JSONAssert.assertEquals(newJson, refJson, JSONCompareMode.LENIENT);
 				res=true;
+				System.out.println("done");
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} catch (AssertionError erreurs) {
@@ -25,10 +26,7 @@ public class verifJson {
 				try {
 					file.createNewFile();
 					String errors=erreurs.toString();
-					System.out.println(errors);
-					
-					errors = errors.substring(errors.indexOf("[") + 1);
-					errors = errors.replace(";", "");
+					int[] line = searchJson.search(errors,newJson); 
 					
 					LocalDateTime myDateObj = LocalDateTime.now();
 					DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -38,6 +36,13 @@ public class verifJson {
 					output = new BufferedWriter(new FileWriter(logPath, true));
 					output.append("["+formattedDate+"]\n\n"+
 							errors+"\n");
+					for(int i=0;i<4;i++) {
+						System.out.println(line[i]);
+						if(line[i]!=0) {
+							output.append("line : "+line[i]+"\n");
+							
+						}
+					}
 					output.close();
 					
 				} catch (IOException e) {
