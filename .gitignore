@@ -1,0 +1,28 @@
+# Compiled class files
+bin/
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Maven build files
+target/
+
+# IntelliJ IDEA files
+*.iml
+
+# NetBeans files
+nbproject/private/
+build/
+dist/
+nbbuild/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Log files
+*.log
+
+# Local repository
+.m2/repository/
