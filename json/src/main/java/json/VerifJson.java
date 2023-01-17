@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
-public class verifJson {
+public class VerifJson {
 	
 	public static boolean verif(String newJson, String refJson) {
 		boolean res=false; 

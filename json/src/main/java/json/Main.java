@@ -1,6 +1,7 @@
 package json;
  
 import org.json.JSONException;
+import utils.FileDetection;
 
 public class Main {
 
@@ -9,11 +10,12 @@ public class Main {
 		  boolean res;
 		  String pathNew="/exempleFull.json";
 		  String pathRef="/exempleFull2.json";
+		  //System.out.println(FileDetection.extensionDetecter(pathNew));
 		  
-		  String jsonTextNew = loadJson.load(pathNew);
-		  String jsonTextRef = loadJson.load(pathRef);
+		  String jsonTextNew = LoadJson.load(pathNew);
+		  String jsonTextRef = LoadJson.load(pathRef);
 
-		  res=verifJson.verif(jsonTextNew, jsonTextRef);
+		  res=VerifJson.verif(jsonTextNew, jsonTextRef);
 	}
 }
 

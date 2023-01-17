@@ -5,11 +5,11 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 
-public class loadJson {
+public class LoadJson {
 
 	public static String load(String path) {
 		 InputStream is = 
-				 loadJson.class.getResourceAsStream(path);
+				 LoadJson.class.getResourceAsStream(path);
 	        String jsonTxt = null;
 			try {
 				jsonTxt = IOUtils.toString(is,"UTF-8");
