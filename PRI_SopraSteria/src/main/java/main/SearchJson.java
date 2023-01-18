@@ -11,7 +11,8 @@ import config.Constants;
 public class SearchJson {
 
 	static int i = 0 ;
-	static ArrayList<String> a;
+	static String return1 = "null";
+	static String return2 = "null";
 	static String errorString2 ="";
 	
 	public static String extractString(String patternStr, String input) {
@@ -23,7 +24,7 @@ public class SearchJson {
 	    return null;
 	}
 	
-	public static ArrayList<String> search(String errorString,String json,String json2) throws IOException {
+	public static String search(String errorString,String json,String json2,String pathRef,String pathNew) throws IOException {
 		System.out.println("start reggex");
 		//On récupère que les éléments qui sont uniques dans le message d'erreur
 		Pattern pattern = Pattern.compile("\\[(.*?idProposition.*?|.*?dateHeureDebutReal.*?|.*?idElementJournee.*?)\\]");
@@ -39,38 +40,31 @@ public class SearchJson {
 		}
 		
 		
-		
-		a = new ArrayList<>(list.size());
-		for (int j = 0; j < list.size()*2; j++) {
-			a.add(null);
-		}
 		System.out.println("start searching");
 		Stream<String> linesFromString = json.lines();
 		linesFromString.forEach(l -> {
 			i++;
-			for (int j = 0; j < list.size(); j++) {
-				if(l.contains(list.get(j))) {
-					System.out.println(i);
-					a.set(j,list.get(j)+" se trouve à la ligne : "+Integer.toString(i) +" dans le fichier : " + Constants.PATHNEW);
-					}; 
-				}
-			}
-		
+			if(l.contains(list.get(list.size()-1))) {
+				System.out.println(i);
+				return1= "\nFichier : " + pathNew +" - Objet : " + list.get(list.size()-1) +" - Ligne : " +Integer.toString(i); 
+
+				}; 
+			}	
 		);
-		
+		i=0;
 		Stream<String> linesFromString2 = json2.lines();
 		linesFromString2.forEach(l -> {
 			i++;
-			for (int j = 0; j < list.size(); j++) {
-				if(l.contains(list.get(j))) {
+			if(l.contains(list.get(list.size()-1))) {
 					System.out.println(i);
-					a.set(j+list.size(),list.get(j)+" se trouve à la ligne : "+Integer.toString(i) +" dans le fichier : " + Constants.PATHREF);
-					}; 
-				}
-			}
+					return2 ="\nFichier : " + pathRef +" - Objet : " + list.get(list.size()-1) +" - Ligne : " +Integer.toString(i)+"\n"; 
+			}; 
+		}
 		
 		);
-		return a;
+		i=0;
+		System.out.println(return1 + return2);
+		return return1 + return2;
 
 	}
 }

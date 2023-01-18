@@ -9,6 +9,8 @@ import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 
+import config.Constants;
+
 public class VerifJson {
 	
 	public static boolean verif(String newJson, String refJson) {
@@ -28,7 +30,12 @@ public class VerifJson {
 				try {
 					file.createNewFile();
 					String errors = erreurs.toString();
-					ArrayList<String> line = SearchJson.search(errors,newJson,refJson); 
+					String[] listErrors = errors.split(";");
+					ArrayList<String> lines = new ArrayList<String>(listErrors.length);
+					for(int i =0;i<listErrors.length;i++) {
+						lines.add(listErrors[i]+SearchJson.search(errors,newJson,refJson, Constants.PATHREF,Constants.PATHNEW)); 
+						System.out.println(i);
+					}
 					
 					LocalDateTime myDateObj = LocalDateTime.now();
 					DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -36,11 +43,10 @@ public class VerifJson {
 					
 					Writer output;
 					output = new BufferedWriter(new FileWriter(logPath, true));
-					output.append("["+formattedDate+"]\n\n"+
-							errors+"\n");
-					for(int i=0;i<line.size();i++) {
-						System.out.println(line.get(i));
-						output.append(line.get(i)+"\n");
+					output.append("["+formattedDate+"]\n\n");
+					for(int i=0;i<lines.size();i++) {
+						System.out.println(lines.get(i));
+						output.append(lines.get(i)+"\n");
 					}
 					output.write(System.lineSeparator());
 					output.append("------------------------------------------------------------------------------------------------------------------------------------------------");

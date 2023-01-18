@@ -4,7 +4,7 @@
   "periodeApplication" : {
     "dateDebut" : "2022-10-17",
     "dateFin" : "2022-10-31",
-    "frequence" : "MARDI"
+    "frequence" : "LUNDI"
   },
   "journeeAgentsProposees" : [ {
     "idJA" : "20220720_143549_QR_171_G410_20221017_20221017",
@@ -99667,8 +99667,8 @@
         "typeJalon" : "DEPART",
         "dateHeureDepartJalon" : "2022-10-28T19:38:00.000Z"
       }, {
-        "codeCRRef" : "0087",
-        "codeCIRef" : "481002",
+        "codeCRRef" : "00",
+        "codeCIRef" : "4812",
         "codeCHRef" : "BV",
         "rang" : 2,
         "typeJalon" : "ARRIVEE",
