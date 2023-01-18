@@ -10,7 +10,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 public class FileTransformer {
 	
-	public static void main(String[] args) throws Exception {
+	public static void csv_to_json() throws Exception {
 		File input = new File(ClassLoader.getSystemResource("example.csv").getPath());
         File output = new File("output.json");
 
@@ -25,7 +25,7 @@ public class FileTransformer {
 
         // Write JSON formated data to output.json file
         mapper.writeValue(output, data);
-        System.out.println(data);
+        //System.out.println(data);
     } 
 
 }
