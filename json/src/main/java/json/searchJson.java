@@ -1,16 +1,14 @@
 package json;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class searchJson {
 	static int i = 0 ;
-	static int[] a = new int[5];
+	static ArrayList<String> a;
 	static String errorString2 ="";
-	static int inc = 0;
 	
 	public static String extractString(String patternStr, String input) {
 	    Pattern pattern = Pattern.compile(patternStr);
@@ -21,82 +19,53 @@ public class searchJson {
 	    return null;
 	}
 	
-	public static int[] search(String errorString,String json) throws IOException {
-		
-		String[] list = new String[5];
-		String idProposition = extractString("idProposition=([^\\]]+)", errorString);
-		String dateHeureDebutReal = extractString("dateHeureDebutReal=([^\\]]+)", errorString);
-		String idElementJournee = extractString("idElementJournee=([^\\]]+)", errorString);
-		String codeCHRef = extractString("codeCHRef=([^\\]]+)", errorString);
-
-		if (idProposition != null) {
-			list[0]= ("\"idProposition\" : \"" + idProposition + "\"");
+	public static ArrayList<String> search(String errorString,String json,String json2) throws IOException {
+		System.out.println("start reggex");
+		//On récupère que les éléments qui sont uniques dans le message d'erreur
+		Pattern pattern = Pattern.compile("\\[(.*?idProposition.*?|.*?dateHeureDebutReal.*?|.*?idElementJournee.*?)\\]");
+		Matcher matcher = pattern.matcher(errorString);
+		ArrayList<String> list = new ArrayList<String>();
+		while (matcher.find()) {
+		    list.add(matcher.group(1));
 		}
-		if (dateHeureDebutReal != null) {
-			list[1]= ("\"dateHeureDebutReal\" : \"" + dateHeureDebutReal + "\"");
-		}
-		if (idElementJournee != null) {
-			list[2]= ("\"idElementJournee\" : \"" + idElementJournee + "\"");
-		}
-		if (codeCHRef != null) {
-			list[3]= ("\"codeCHRef\" : \"" + codeCHRef + "\"");
-		}
-
-		System.out.println(list[0]);
-		System.out.println(list[1]);
-		System.out.println(list[2]);
-		System.out.println(list[3]);
-		System.out.println(list[4]);
-
-
-
-
-
-		
-		/*String findStr = "[";
-		int lastIndex = 0;
-		int countWord = 0;
-		int pos = 0;
-		while (lastIndex != -1) {
-		    lastIndex = errorString.indexOf(findStr, lastIndex);
-		    countWord++;
-		    if (lastIndex != -1) {
-		        pos=countWord-1;
-		        System.out.println(pos);
-		        lastIndex += findStr.length();
-		    }
+		for (int j = 0; j < list.size(); j++) {
+			System.out.println(list.get(j));
+			list.set(j, "\""+list.get(j).replace("=", "\" : \"")+"\"");
+			System.out.println(list.get(j));
 		}
 		
-		String findStr2 = "]";
-		int lastIndex2 = 0;
-		int countWord2 = 0;
-		int pos2 = 0;
-		while (lastIndex2 != -1) {
-		    lastIndex2 = errorString.indexOf(findStr2, lastIndex2);
-		    countWord2++;
-		    if (lastIndex2 != -1) {
-		        pos2=countWord2-1;
-		        System.out.println(pos2);
-		        lastIndex2 += findStr2.length();
-		    }
-		}
 		
-		errorString2=errorString.substring(pos+1,pos2);
-		System.out.println(errorString2);*/
+		
+		a = new ArrayList<>(list.size());
+		for (int j = 0; j < list.size()*2; j++) {
+			a.add(null);
+		}
 		System.out.println("start searching");
 		Stream<String> linesFromString = json.lines();
 		linesFromString.forEach(l -> {
 			i++;
-			for (int j = 0; j < 5; j++) {
-				if(list[j]!=null && l.contains(list[j])) {
+			for (int j = 0; j < list.size(); j++) {
+				if(l.contains(list.get(j))) {
 					System.out.println(i);
-					a[inc] = i;
-					inc++;}
+					a.set(j,list.get(j)+" se trouve à la ligne : "+Integer.toString(i) +" dans le fichier : " + Main.pathNew);
+					}; 
 				}
 			}
 		
 		);
-		inc = 0;
+		
+		Stream<String> linesFromString2 = json2.lines();
+		linesFromString2.forEach(l -> {
+			i++;
+			for (int j = 0; j < list.size(); j++) {
+				if(l.contains(list.get(j))) {
+					System.out.println(i);
+					a.set(j+list.size(),list.get(j)+" se trouve à la ligne : "+Integer.toString(i) +" dans le fichier : " + Main.pathRef);
+					}; 
+				}
+			}
+		
+		);
 		return a;
 
 	}

@@ -98896,7 +98896,7 @@
     }, {
       "idElementJournee" : "15606341_1376256_20221021",
       "idEtapeTacheReferentiel" : "VAR",
-      "libelleEtapeTacheReferentiel" : "VAR",
+      "libelleEtapeTacheReferentiel" : "V",
       "natureElement" : "TACHE",
       "dateHeureDeb" : "2022-10-21T19:23:00.000Z",
       "dateHeureFin" : "2022-10-21T19:38:00.000Z",

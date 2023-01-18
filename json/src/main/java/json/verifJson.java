@@ -3,6 +3,7 @@ package json;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -26,7 +27,7 @@ public class verifJson {
 				try {
 					file.createNewFile();
 					String errors=erreurs.toString();
-					int[] line = searchJson.search(errors,newJson); 
+					ArrayList<String> line = searchJson.search(errors,newJson,refJson); 
 					
 					LocalDateTime myDateObj = LocalDateTime.now();
 					DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -36,12 +37,9 @@ public class verifJson {
 					output = new BufferedWriter(new FileWriter(logPath, true));
 					output.append("["+formattedDate+"]\n\n"+
 							errors+"\n");
-					for(int i=0;i<4;i++) {
-						System.out.println(line[i]);
-						if(line[i]!=0) {
-							output.append("line : "+line[i]+"\n");
-							
-						}
+					for(int i=0;i<line.size();i++) {
+						System.out.println(line.get(i));
+						output.append(line.get(i)+"\n");
 					}
 					output.close();
 					

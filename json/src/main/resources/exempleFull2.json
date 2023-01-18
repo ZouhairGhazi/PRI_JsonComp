@@ -98896,7 +98896,7 @@
     }, {
       "idElementJournee" : "15606341_1376256_20221021",
       "idEtapeTacheReferentiel" : "VAR",
-      "libelleEtapeTacheReferentiel" : "VAR",
+      "libelleEtapeTacheReferentiel" : "V",
       "natureElement" : "TACHE",
       "dateHeureDeb" : "2022-10-21T19:23:00.000Z",
       "dateHeureFin" : "2022-10-21T19:38:00.000Z",
@@ -99651,16 +99651,16 @@
         "dateHeureArriveeJalon" : "2022-10-28T19:38:00.000Z"
       } ]
     }, {
-      "idElementJournee" : "15606341_1441792_20221028",
+      "idElementJournee" : "15606341_1442_20221028",
       "idEtapeTacheReferentiel" : "MarcheAPied",
       "libelleEtapeTacheReferentiel" : "MarcheAPied",
       "natureElement" : "TACHE",
       "dateHeureDeb" : "2022-10-28T19:38:00.000Z",
-      "dateHeureFin" : "2022-10-28T19:48:00.00",
+      "dateHeureFin" : "2022-10-28T19:48:00.000Z",
       "dateHeureModification" : "2022-07-07T11:33:31.000Z",
       "source" : "13",
       "jalons" : [ {
-        "codeCRRef" : "0087",
+        "codeCRRef" : "087",
         "codeCIRef" : "481002",
         "codeCHRef" : "CN",
         "rang" : 1,
