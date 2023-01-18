@@ -16,7 +16,7 @@ public class VerifJson {
 	public static boolean verif(String newJson, String refJson) {
 		
 		boolean res = false; 
-		String logPath = System.getProperty("user.home") + "/Desktop/log.txt";
+		String logPath = "src/main/resources/Log/log.txt";
 		try {
 				JSONAssert.assertEquals(newJson, refJson, JSONCompareMode.LENIENT);
 				res = true;
