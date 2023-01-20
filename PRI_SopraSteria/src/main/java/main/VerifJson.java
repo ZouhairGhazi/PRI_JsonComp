@@ -31,9 +31,9 @@ public class VerifJson {
 					file.createNewFile(); // On essaye de créer le fichier log (Si il existe le code continue)
 					String errors = erreurs.toString(); // On stocke les différences détectées dans un String
 					String[] listErrors = errors.split(";"); // On split à chaque ";""
-					ArrayList<String> lines = new ArrayList<String>(listErrors.length); 
+					ArrayList<String> lines = new ArrayList<String>(listErrors.length); // c'est l'objet qui va permettre de sotcker les lignes obtenues par la fonction search()
 					for(int i =0;i<listErrors.length;i++) {
-						lines.add(listErrors[i]+SearchJson.search(errors,newJson,refJson, Constants.PATHREF,Constants.PATHNEW)); 
+						lines.add(listErrors[i]+SearchJson.search(errors,newJson,refJson, Constants.PATHREF,Constants.PATHNEW)); // on cherche les lignes des erreurs qui sont survenues
 						System.out.println(i);
 					}
 					
@@ -46,7 +46,7 @@ public class VerifJson {
 					output.append("["+formattedDate+"]\n\n"); // Dans un premier temps on écrit la date et l'heure
 					for(int i=0;i<lines.size();i++) { 
 						System.out.println(lines.get(i)); 
-						output.append(lines.get(i)+"\n");
+						output.append(lines.get(i)+"\n"); // on ajoute toutes les lignes qui seront dans le log
 					}
 					output.write(System.lineSeparator());
 					output.append("------------------------------------------------------------------------------------------------------------------------------------------------");
