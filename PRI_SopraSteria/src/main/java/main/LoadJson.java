@@ -7,6 +7,12 @@ import org.apache.commons.io.IOUtils;
 
 public class LoadJson {
 	
+	/**
+	* load est la méthode de transformation du contenu d'un fichier JSON en String
+	* 
+	* @param path
+	* @return String
+	*/
 	public static String load(String path) {
 		 InputStream is = 
 				 LoadJson.class.getResourceAsStream(path);

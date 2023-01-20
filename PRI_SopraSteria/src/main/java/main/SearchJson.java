@@ -6,8 +6,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-import config.Constants;
-
 public class SearchJson {
 
 	static int i = 0 ;
