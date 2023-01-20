@@ -7,8 +7,8 @@ import utils.FileDetection;
 import config.Constants;
 
 /**
-* Main est la classe qui principale du projet, ça démarre en détectant l'extension des fichiers à comparer,
-* et puis renvoie sur la console True pour des fichiers identiques, et false pour des fichiers différents.
+* Main est la classe qui principale du projet, ï¿½a dï¿½marre en dï¿½tectant l'extension des fichiers ï¿½ comparer,
+* et puis renvoie sur la console True pour des fichiers identiques, et false pour des fichiers diffï¿½rents.
 *
 * @version 1.0
 * @category Main
@@ -20,18 +20,18 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 			
 		  boolean res;		  
-		  if (FileDetection.extensionDetecter(Constants.PATHNEW).equals("json") && FileDetection.extensionDetecter(Constants.PATHREF).equals("json") ) {
-			  String jsonTextNew = LoadJson.load(Constants.PATHNEW);
+		  if (FileDetection.extensionDetecter(Constants.PATHNEW).equals("json") && FileDetection.extensionDetecter(Constants.PATHREF).equals("json") ) {  // Si les 2 fichiers sont des fichiers JSON
+			  String jsonTextNew = LoadJson.load(Constants.PATHNEW); // On rÃ©cupÃ¨re leur contenu dans un String
 			  String jsonTextRef = LoadJson.load(Constants.PATHREF);
-			  res = VerifJson.verif(jsonTextNew, jsonTextRef);
+			  res = VerifJson.verif(jsonTextNew, jsonTextRef); // On compare le contenu des 2 fichiers
 			  System.out.println(res);
 		  }
-		  else if (FileDetection.extensionDetecter(Constants.PATHNEW).equals("csv") && FileDetection.extensionDetecter(Constants.PATHREF).equals("csv")) {
-			  res = CompareCSV.verifCSV(Constants.PATHNEW, Constants.PATHREF);
+		  else if (FileDetection.extensionDetecter(Constants.PATHNEW).equals("csv") && FileDetection.extensionDetecter(Constants.PATHREF).equals("csv")) { // Si les 2 fichiers sont des fichiers CSV
+			  res = CompareCSV.verifCSV(Constants.PATHNEW, Constants.PATHREF); // On compare le contenu des 2 fichiers
 			  System.out.println(res);
 		  }
 		  else {
-			  System.out.println("Extension non reconnu !");
+			  System.out.println("Extension non reconnu !"); 
 		  }
 	}
 
