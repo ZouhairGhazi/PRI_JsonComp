@@ -1,0 +1,19 @@
+[
+  {
+    "First name": "Bob",
+    "Date of Birth": "01-01-1966",
+    "Gender": "Male",
+    "Hobbies" : [ { 
+      "Movie": "James Bond"
+    } ]
+  },
+  {
+    "First name": "Alice",
+    "Date of Birth": "10-10-1976",
+    "Gender": "Female",
+    "Hobbies" : [ { 
+      "Sport": "Ping-pong",
+      "Movie": "Mission Impossible"
+    } ]
+  }
+]
