@@ -1,27 +1,63 @@
 package utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.FileReader;
-import java.io.IOException;
+import config.Constants;
 
 public class CompareCSV {
-    @SuppressWarnings("resource")
-	public static void main(String[] args) throws IOException {
-        FileReader file1 = new FileReader(ClassLoader.getSystemResource("exemple_csv_1.csv").getPath());
-        FileReader file2 = new FileReader(ClassLoader.getSystemResource("exemple_csv_2.csv").getPath());
-        CSVParser parser1 = new CSVParser(file1, CSVFormat.DEFAULT);
-        CSVParser parser2 = new CSVParser(file2, CSVFormat.DEFAULT);
-        for (CSVRecord record1 : parser1) {
-            CSVRecord record2 = parser2.iterator().next();
-            for (int i = 0; i < record1.size(); i++) {
-            	System.out.println("hi");
-                if (!record1.get(i).equals(record2.get(i))) {
-                    System.out.println("Difference found at index " + i + ": " + record1.get(i) + " vs " + record2.get(i));
-                }
+    public static void main(String[] args) throws Exception {
+    	
+    	InputStream is = ClassLoader.getSystemResourceAsStream("CSV_file.csv");
+    	BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+    	String line;
+    	while ((line = br.readLine()) != null) {
+    	   System.out.println(line);
+    	}
+
+    	br.close();
+    	
+        /*String file1 = Constants.PATHNEW_CSV;
+        String file2 = Constants.PATHREF_CSV;
+
+        Set<String> set1 = new HashSet<>();
+        Set<String> set2 = new HashSet<>();
+        
+
+        // read file1 and store its contents in set1
+        try (CSVParser parser = new CSVParser(new FileReader(file1), CSVFormat.DEFAULT.withDelimiter('|').withRecordSeparator("\n"))) {
+            for (CSVRecord record : parser) {
+                set1.add(record.toString());
             }
         }
+
+        // read file2 and store its contents in set2
+        try (CSVParser parser = new CSVParser(new FileReader(file2), CSVFormat.DEFAULT.withDelimiter('|').withRecordSeparator("\n"))) {
+            for (CSVRecord record : parser) {
+                set2.add(record.toString());
+            }
+        }
+
+        // Find rows that are in file1 but not in file2
+        Set<String> diff1 = new HashSet<>(set1);
+        diff1.removeAll(set2);
+
+        // Find rows that are in file2 but not in file1
+        Set<String> diff2 = new HashSet<>(set2);
+        diff2.removeAll(set1);
+
+        // Find rows that are in both files
+        Set<String> common = new HashSet<>(set1);
+        common.retainAll(set2);
+        
+        System.out.println(common);*/
     }
 }
